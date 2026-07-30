@@ -157,6 +157,7 @@ jobs:
         sudo apt -y install $WORKDIR/grub.deb
 
         # Install BOOTX64.EFI to package directory
+        sudo apt install libdevmapper1.02.1
         sudo grub-mkimage \
             --format=x86_64-efi \
             --output=$PACKAGE/EFI/BOOT/BOOTX64.EFI \
