@@ -152,7 +152,7 @@ jobs:
         tar -C $PACKAGE/ -xf $WORKDIR/memtest-$MEMTEST_V.tar.gz
 
         # Install GRUB
-        sudo apt-get remove -y grub-common grub2-common
+        sudo apt purge -y grub*-common grub-common
         sudo apt -y install $WORKDIR/grub.deb
 
         # Install BOOTX64.EFI to package directory
