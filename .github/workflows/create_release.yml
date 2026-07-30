@@ -103,13 +103,15 @@ jobs:
 
         # Define download asset function including md5 check
         download_asset() {
+          REPO="${4:-${{ github.repository_owner }}/mos-$1}"
           echo "Downloading file: ${2##*/}"
+          
           curl --progress-bar -L \
             --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             --header "Accept: application/octet-stream" \
             --header "X-GitHub-Api-Version: 2022-11-28" \
             --output "$2" \
-            "https://api.github.com/repos/${{ github.repository_owner }}/mos-$1/releases/assets/$3"
+            "https://api.github.com/repos/$REPO/releases/assets/$3"
         
           if [[ "$2" == *.md5 ]]; then
             echo "Checking md5"
@@ -117,7 +119,7 @@ jobs:
               echo "md5 OK"
             else
               echo "md5 ERROR"
-              #exit 1  TODO exclude grub from repo owner
+              exit 1
             fi
           fi
         }
@@ -131,8 +133,8 @@ jobs:
         download_asset "kernel" "$PACKAGE/drivers.md5" "$ASSET_DRIVERS_MD5"
         download_asset "kernel" "$PACKAGE/microcode" "$ASSET_MICROCODE"
         download_asset "kernel" "$PACKAGE/microcode.md5" "$ASSET_MICROCODE_MD5"
-        download_asset "grub" "$WORKDIR/grub.deb" "$GRUB_DEB"
-        download_asset "grub" "$WORKDIR/grub.deb.md5" "$GRUB_DEB_MD5"
+        download_asset "grub" "$WORKDIR/grub.deb" "$GRUB_DEB" "mos-nas/mos-grub"
+        download_asset "grub" "$WORKDIR/grub.deb.md5" "$GRUB_DEB_MD5" "mos-nas/mos-grub"
 
         # Download Memtest86+
         echo "Downloading file: memtest-$MEMTEST_V.tar.gz"
