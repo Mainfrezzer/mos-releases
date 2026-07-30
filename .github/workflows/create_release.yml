@@ -152,7 +152,7 @@ jobs:
         tar -C $PACKAGE/ -xf $WORKDIR/memtest-$MEMTEST_V.tar.gz
 
         # Install GRUB
-        sudo apt purge -y grub-common grub2-common shim-signed grub-efi-amd64-signed grub-efi-amd64-bin grub-efi-amd64
+        sudo apt purge -y --allow-remove-essential grub-common grub2-common shim-signed grub-efi-amd64-signed grub-efi-amd64-bin grub-efi-amd64
 
         sudo apt -y install $WORKDIR/grub.deb
 
