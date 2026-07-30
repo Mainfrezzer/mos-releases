@@ -169,7 +169,7 @@ jobs:
         mkdir -p $PACKAGE/grub/{fonts,locale}
 
         # Download mos-boot-files
-        git clone https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/mos-nas/mos-boot-files $WORKDIR/mos-boot-files
+        git clone https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository_owner }}/mos-boot-files $WORKDIR/mos-boot-files
 
         # Copy necessary mos-boot-files to package directory
         cp -R $WORKDIR/mos-boot-files/config $WORKDIR/mos-boot-files/grub $PACKAGE
