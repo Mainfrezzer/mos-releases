@@ -44,7 +44,7 @@ jobs:
 
         # Get JSONs
         ROOTFS_JSON=$(curl -s --request GET \
-            --url "https://api.github.com/repos/mos-nas/mos-rootfs/releases?per_page=50" \
+            --url "https://api.github.com/repos/${{ github.repository_owner }}/mos-rootfs/releases?per_page=50" \
             --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             --header "X-GitHub-Api-Version: 2022-11-28")
 
@@ -88,7 +88,7 @@ jobs:
           --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           --header "Accept: application/octet-stream" \
           --header "X-GitHub-Api-Version: 2022-11-28" \
-          "https://api.github.com/repos/mos-nas/mos-rootfs/releases/assets/$ASSET_RELEASE_JSON")
+          "https://api.github.com/repos/${{ github.repository_owner }}/mos-rootfs/releases/assets/$ASSET_RELEASE_JSON")
 
         # Get recommended Kernel version for release
         RECOMMENDED_KERNEL=$(echo $RELEASE_JSON | jq -r '.mos.recommended_kernel')
@@ -125,8 +125,8 @@ jobs:
         }
 
         # Download assets
-        download_asset "rootfs" "$PACKAGE/rootfs" "$ASSET_ROOTFS" "mos-nas/mos-rootfs"
-        download_asset "rootfs" "$PACKAGE/rootfs.md5" "$ASSET_ROOTFS_MD5" "mos-nas/mos-rootfs"
+        download_asset "rootfs" "$PACKAGE/rootfs" "$ASSET_ROOTFS"
+        download_asset "rootfs" "$PACKAGE/rootfs.md5" "$ASSET_ROOTFS_MD5"
         download_asset "kernel" "$PACKAGE/image" "$ASSET_KERNEL"
         download_asset "kernel" "$PACKAGE/image.md5" "$ASSET_KERNEL_MD5"
         download_asset "kernel" "$PACKAGE/drivers" "$ASSET_DRIVERS"
