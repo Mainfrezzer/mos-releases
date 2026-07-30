@@ -125,8 +125,8 @@ jobs:
         }
 
         # Download assets
-        download_asset "rootfs" "$PACKAGE/rootfs" "$ASSET_ROOTFS"
-        download_asset "rootfs" "$PACKAGE/rootfs.md5" "$ASSET_ROOTFS_MD5"
+        download_asset "rootfs" "$PACKAGE/rootfs" "$ASSET_ROOTFS" "mos-nas/mos-rootfs"
+        download_asset "rootfs" "$PACKAGE/rootfs.md5" "$ASSET_ROOTFS_MD5" "mos-nas/mos-rootfs"
         download_asset "kernel" "$PACKAGE/image" "$ASSET_KERNEL"
         download_asset "kernel" "$PACKAGE/image.md5" "$ASSET_KERNEL_MD5"
         download_asset "kernel" "$PACKAGE/drivers" "$ASSET_DRIVERS"
