@@ -157,7 +157,7 @@ jobs:
         sudo apt -y install $WORKDIR/grub.deb
 
         # Install BOOTX64.EFI to package directory
-        sudo apt install libdevmapper1.02.1
+        wget http://cz.archive.ubuntu.com/ubuntu/pool/main/l/lvm2/libdevmapper1.02.1_1.02.205-2ubuntu3_amd64.deb && sudo apt install ./libdevmapper1.02.1_1.02.205-2ubuntu3_amd64.deb
         sudo grub-mkimage \
             --format=x86_64-efi \
             --output=$PACKAGE/EFI/BOOT/BOOTX64.EFI \
