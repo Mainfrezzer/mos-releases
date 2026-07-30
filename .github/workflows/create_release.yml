@@ -150,10 +150,10 @@ jobs:
         tar -C $PACKAGE/ -xf $WORKDIR/memtest-$MEMTEST_V.tar.gz
 
         # Install GRUB
-        apt -y install $WORKDIR/grub.deb
+        sudo apt -y install $WORKDIR/grub.deb
 
         # Install BOOTX64.EFI to package directory
-        grub-mkimage \
+        sudo grub-mkimage \
             --format=x86_64-efi \
             --output=$PACKAGE/EFI/BOOT/BOOTX64.EFI \
             --prefix="/grub" \
