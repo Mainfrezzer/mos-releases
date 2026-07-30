@@ -192,7 +192,7 @@ jobs:
         echo "drive x: file=\"$WORKDIR/mos_amd64.img\"" | sudo tee "/root/.mtoolsrc"
 
         # Copy over files from package directory to image
-        mcopy -s $PACKAGE/* x:/
+        sudo mcopy -s $PACKAGE/* x:/
 
         # Create xz archive from image
         xz -9 -T0 $WORKDIR/mos_amd64.img
