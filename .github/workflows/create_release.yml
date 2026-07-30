@@ -189,7 +189,7 @@ jobs:
         mkfs.fat -F 32 -n "MOS" $WORKDIR/mos_amd64.img
 
         # Prepare config for mtools
-        echo "drive x: file=\"$WORKDIR/mos_amd64.img\"" > /root/.mtoolsrc
+        echo "drive x: file=\"$WORKDIR/mos_amd64.img\"" | sudo tee "/root/.mtoolsrc"
 
         # Copy over files from package directory to image
         mcopy -s $PACKAGE/* x:/
