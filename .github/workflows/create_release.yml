@@ -33,7 +33,7 @@ jobs:
     #      })
 
     - name: Install dependencies
-      run: apt-get update && apt-get -y install parted mtools dosfstools zip wget
+      run: sudo apt-get update && sudo apt-get -y install parted mtools dosfstools zip wget
 
     - name: Create Release
       run: |
